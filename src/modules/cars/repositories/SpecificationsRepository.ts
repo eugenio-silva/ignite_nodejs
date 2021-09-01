@@ -1,7 +1,5 @@
-import { isThisTypeNode } from "typescript";
 import { Specification } from "../model/Specification";
 import { ICreateSpecificationDTO, ISpecificationsRepository } from "./ISpecificationsRepository";
-
 
 class SpecificationsRepository implements ISpecificationsRepository {
   private specifications: Specification[]
@@ -20,6 +18,13 @@ class SpecificationsRepository implements ISpecificationsRepository {
     })
 
     this.specifications.push(specification)
+  }
+
+  findByname(name: string): Specification {
+    const specification = this.specifications.find(
+      (specification) => specification.name === name
+    )
+    return specification
   }
 }
 
